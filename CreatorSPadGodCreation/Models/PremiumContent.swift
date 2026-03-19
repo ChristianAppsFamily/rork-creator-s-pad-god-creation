@@ -1,0 +1,67 @@
+import SwiftUI
+
+nonisolated enum PremiumContent: Sendable {
+    static let extraVerses: [ScriptureVerse] = [
+        ScriptureVerse(reference: "EXODUS 14:14", text: "The Lord will fight for you; you need only to be still."),
+        ScriptureVerse(reference: "DEUTERONOMY 31:6", text: "Be strong and courageous. Do not be afraid."),
+        ScriptureVerse(reference: "JOSHUA 1:9", text: "Be strong and courageous. Do not be afraid; do not be discouraged."),
+        ScriptureVerse(reference: "1 SAMUEL 16:7", text: "The Lord looks at the heart."),
+        ScriptureVerse(reference: "2 CHRONICLES 7:14", text: "If my people will humble themselves and pray."),
+        ScriptureVerse(reference: "PSALM 34:8", text: "Taste and see that the Lord is good."),
+        ScriptureVerse(reference: "PSALM 37:4", text: "Take delight in the Lord, and he will give you the desires of your heart."),
+        ScriptureVerse(reference: "PSALM 51:10", text: "Create in me a pure heart, O God."),
+        ScriptureVerse(reference: "PSALM 56:3", text: "When I am afraid, I put my trust in you."),
+        ScriptureVerse(reference: "PSALM 91:1", text: "Whoever dwells in the shelter of the Most High."),
+        ScriptureVerse(reference: "PSALM 118:24", text: "This is the day the Lord has made; let us rejoice and be glad in it."),
+        ScriptureVerse(reference: "PSALM 121:1", text: "I lift up my eyes to the mountains."),
+        ScriptureVerse(reference: "PROVERBS 16:3", text: "Commit to the Lord whatever you do, and he will establish your plans."),
+        ScriptureVerse(reference: "PROVERBS 18:10", text: "The name of the Lord is a fortified tower."),
+        ScriptureVerse(reference: "ISAIAH 9:6", text: "For to us a child is born, to us a son is given."),
+        ScriptureVerse(reference: "ISAIAH 26:3", text: "You will keep in perfect peace those whose minds are steadfast."),
+        ScriptureVerse(reference: "ISAIAH 40:8", text: "The grass withers and the flowers fall, but the word of our God endures forever."),
+        ScriptureVerse(reference: "ISAIAH 55:8", text: "For my thoughts are not your thoughts."),
+        ScriptureVerse(reference: "LAMENTATIONS 3:22", text: "Because of the Lord's great love we are not consumed."),
+        ScriptureVerse(reference: "MICAH 6:8", text: "Act justly and to love mercy and to walk humbly with your God."),
+        ScriptureVerse(reference: "NAHUM 1:7", text: "The Lord is good, a refuge in times of trouble."),
+        ScriptureVerse(reference: "ZEPHANIAH 3:17", text: "The Lord your God is with you, the Mighty Warrior who saves."),
+        ScriptureVerse(reference: "MATTHEW 7:7", text: "Ask and it will be given to you; seek and you will find."),
+        ScriptureVerse(reference: "MARK 9:23", text: "Everything is possible for one who believes."),
+        ScriptureVerse(reference: "LUKE 6:31", text: "Do to others as you would have them do to you."),
+        ScriptureVerse(reference: "JOHN 10:10", text: "I have come that they may have life, and have it to the full."),
+        ScriptureVerse(reference: "ROMANS 12:2", text: "Be transformed by the renewing of your mind."),
+        ScriptureVerse(reference: "2 CORINTHIANS 5:17", text: "If anyone is in Christ, the new creation has come."),
+        ScriptureVerse(reference: "JAMES 1:17", text: "Every good and perfect gift is from above."),
+        ScriptureVerse(reference: "1 PETER 5:7", text: "Cast all your anxiety on him because he cares for you."),
+    ]
+
+    static let extraColors: [DrawingColor] = [
+        DrawingColor(id: "rose", color: Color(red: 0.9, green: 0.3, blue: 0.5), uiColor: UIColor(red: 0.9, green: 0.3, blue: 0.5, alpha: 1), name: "Rose"),
+        DrawingColor(id: "lavender", color: Color(red: 0.7, green: 0.5, blue: 0.85), uiColor: UIColor(red: 0.7, green: 0.5, blue: 0.85, alpha: 1), name: "Lavender"),
+        DrawingColor(id: "teal", color: Color(red: 0.25, green: 0.7, blue: 0.7), uiColor: UIColor(red: 0.25, green: 0.7, blue: 0.7, alpha: 1), name: "Teal"),
+        DrawingColor(id: "sky", color: Color(red: 0.53, green: 0.81, blue: 0.92), uiColor: UIColor(red: 0.53, green: 0.81, blue: 0.92, alpha: 1), name: "Sky"),
+        DrawingColor(id: "peach", color: Color(red: 1.0, green: 0.7, blue: 0.55), uiColor: UIColor(red: 1.0, green: 0.7, blue: 0.55, alpha: 1), name: "Peach"),
+        DrawingColor(id: "mint", color: Color(red: 0.6, green: 0.9, blue: 0.75), uiColor: UIColor(red: 0.6, green: 0.9, blue: 0.75, alpha: 1), name: "Mint"),
+        DrawingColor(id: "gold", color: Color(red: 0.85, green: 0.7, blue: 0.2), uiColor: UIColor(red: 0.85, green: 0.7, blue: 0.2, alpha: 1), name: "Gold"),
+        DrawingColor(id: "burgundy", color: Color(red: 0.55, green: 0.12, blue: 0.2), uiColor: UIColor(red: 0.55, green: 0.12, blue: 0.2, alpha: 1), name: "Burgundy"),
+        DrawingColor(id: "forest", color: Color(red: 0.15, green: 0.5, blue: 0.25), uiColor: UIColor(red: 0.15, green: 0.5, blue: 0.25, alpha: 1), name: "Forest"),
+        DrawingColor(id: "plum", color: Color(red: 0.56, green: 0.27, blue: 0.52), uiColor: UIColor(red: 0.56, green: 0.27, blue: 0.52, alpha: 1), name: "Plum"),
+        DrawingColor(id: "slate", color: Color(red: 0.44, green: 0.5, blue: 0.56), uiColor: UIColor(red: 0.44, green: 0.5, blue: 0.56, alpha: 1), name: "Slate"),
+        DrawingColor(id: "salmon", color: Color(red: 0.98, green: 0.5, blue: 0.45), uiColor: UIColor(red: 0.98, green: 0.5, blue: 0.45, alpha: 1), name: "Salmon"),
+        DrawingColor(id: "olive", color: Color(red: 0.5, green: 0.5, blue: 0.0), uiColor: UIColor(red: 0.5, green: 0.5, blue: 0.0, alpha: 1), name: "Olive"),
+        DrawingColor(id: "navy", color: Color(red: 0.1, green: 0.1, blue: 0.45), uiColor: UIColor(red: 0.1, green: 0.1, blue: 0.45, alpha: 1), name: "Navy"),
+        DrawingColor(id: "brown", color: Color(red: 0.55, green: 0.35, blue: 0.17), uiColor: UIColor(red: 0.55, green: 0.35, blue: 0.17, alpha: 1), name: "Brown"),
+        DrawingColor(id: "turquoise", color: Color(red: 0.25, green: 0.88, blue: 0.82), uiColor: UIColor(red: 0.25, green: 0.88, blue: 0.82, alpha: 1), name: "Turquoise"),
+        DrawingColor(id: "crimson", color: Color(red: 0.86, green: 0.08, blue: 0.24), uiColor: UIColor(red: 0.86, green: 0.08, blue: 0.24, alpha: 1), name: "Crimson"),
+        DrawingColor(id: "indigo", color: Color(red: 0.29, green: 0.0, blue: 0.51), uiColor: UIColor(red: 0.29, green: 0.0, blue: 0.51, alpha: 1), name: "Indigo"),
+        DrawingColor(id: "sienna", color: Color(red: 0.63, green: 0.32, blue: 0.18), uiColor: UIColor(red: 0.63, green: 0.32, blue: 0.18, alpha: 1), name: "Sienna"),
+        DrawingColor(id: "charcoal", color: Color(red: 0.21, green: 0.27, blue: 0.31), uiColor: UIColor(red: 0.21, green: 0.27, blue: 0.31, alpha: 1), name: "Charcoal"),
+    ]
+
+    static let extraFonts: [(name: String, displayName: String)] = [
+        ("Avenir-Heavy", "Avenir"),
+        ("Futura-Medium", "Futura"),
+        ("GillSans-Bold", "Gill Sans"),
+        ("HelveticaNeue-Light", "Helvetica Neue"),
+        ("Optima-Regular", "Optima"),
+    ]
+}
