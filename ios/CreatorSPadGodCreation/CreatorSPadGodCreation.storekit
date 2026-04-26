@@ -1,0 +1,57 @@
+{
+  "identifier" : "B90D1AEF-1D8D-4D20-8C5D-4F03B11F56F8",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : true,
+      "internalID" : "7C68755D-40F1-4990-A30D-841F0824852A",
+      "localizations" : [
+        {
+          "description" : "Remove banner ads from Creator's Pad.",
+          "displayName" : "Remove Ads",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.creatorspad.removeads",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "7.99",
+      "familyShareable" : true,
+      "internalID" : "098C215E-97F5-40E6-A6CB-FAB6C43C91F4",
+      "localizations" : [
+        {
+          "description" : "Unlock all Bible coloring pages, premium creative tools, and remove ads.",
+          "displayName" : "Premium Unlock",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.creatorspad.premium",
+      "referenceName" : "Premium Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "A5E2F78F-7D35-4C5B-8DD5-DC4145975D66",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 759362400,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

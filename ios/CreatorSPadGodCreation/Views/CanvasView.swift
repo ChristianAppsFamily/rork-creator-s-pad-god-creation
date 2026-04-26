@@ -10,6 +10,8 @@ struct CanvasView: View {
     @State private var textOverlays: [TextOverlay] = []
     @State private var stickerOverlays: [StickerOverlay] = []
     @State private var showSettings: Bool = false
+    @State private var showColoringPages: Bool = false
+    @State private var showUpgrade: Bool = false
 
     private var canvasBackground: Color {
         colorScheme == .dark ? Color(red: 0.11, green: 0.11, blue: 0.12) : .white
@@ -25,7 +27,12 @@ struct CanvasView: View {
 
             ZStack {
                 canvasBackground
-                DotGridBackground()
+                if let page = viewModel.currentColoringPage {
+                    ColoringPageTemplateView(page: page)
+                        .padding(24)
+                } else {
+                    DotGridBackground()
+                }
                 DrawingCanvasRepresentable(
                     canvasView: pkCanvasView,
                     tool: viewModel.pkTool,
@@ -66,6 +73,16 @@ struct CanvasView: View {
                 onNew: { viewModel.newArtwork() }
             )
         }
+        .sheet(isPresented: $showColoringPages) {
+            ColoringPageLibraryView(hasPremium: storeService.hasPremium) { page in
+                viewModel.startColoringPage(page)
+            } onUpgradeRequested: {
+                showColoringPages = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    showUpgrade = true
+                }
+            }
+        }
         .sheet(isPresented: $viewModel.showTextTool) {
             TextToolView(hasPremium: storeService.hasPremium) { text, fontName in
                 let overlay = TextOverlay(text: text, fontName: fontName)
@@ -85,6 +102,9 @@ struct CanvasView: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView(settingsVM: settingsVM, storeService: storeService)
+        }
+        .sheet(isPresented: $showUpgrade) {
+            UpgradeView(storeService: storeService)
         }
         .alert("Clear Canvas?", isPresented: $viewModel.showClearConfirmation) {
             Button("Clear", role: .destructive) { viewModel.clearCanvas() }
@@ -106,6 +126,18 @@ struct CanvasView: View {
                         .font(.subheadline.weight(.medium))
                 }
                 .foregroundStyle(Color(red: 1.0, green: 0.47, blue: 0.42))
+            }
+
+            Button {
+                showColoringPages = true
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "book.fill")
+                        .font(.subheadline)
+                    Text("Pages")
+                        .font(.subheadline.weight(.medium))
+                }
+                .foregroundStyle(Color(red: 0.4, green: 0.75, blue: 0.72))
             }
 
             Spacer()

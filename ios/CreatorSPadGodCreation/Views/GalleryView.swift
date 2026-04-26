@@ -86,10 +86,16 @@ struct GalleryCard: View {
                     .clipShape(.rect(cornerRadius: 12, style: .continuous))
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(artwork.verseReference)
-                        .font(.system(.caption, design: .serif, weight: .semibold))
+                    Text(artwork.coloringPageTitle ?? artwork.verseReference)
+                        .font(.system(.caption, design: artwork.artworkKind == .coloringPage ? .rounded : .serif, weight: .semibold))
                         .foregroundStyle(Color(red: 0.4, green: 0.3, blue: 0.55))
                         .lineLimit(1)
+
+                    if artwork.artworkKind == .coloringPage {
+                        Label("Coloring Page", systemImage: "book.closed.fill")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
 
                     Text(artwork.updatedAt, style: .relative)
                         .font(.caption2)
