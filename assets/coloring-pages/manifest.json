@@ -1,0 +1,266 @@
+{
+  "format": {
+    "layout_ratio": "3:4",
+    "svg_canvas": {
+      "width": 1536,
+      "height": 2048
+    },
+    "thumbnail_png": {
+      "width": 384,
+      "height": 512
+    },
+    "background": "white",
+    "line_style": "clean black outlines, no grayscale, no shading"
+  },
+  "notes": {
+    "character_style": "cartoonish human faces",
+    "theology_constraints": [
+      "no direct depiction of God",
+      "halos may appear in selected pages",
+      "winged angels acceptable for younger kids",
+      "crosses allowed"
+    ]
+  },
+  "pages": [
+    {
+      "number": 1,
+      "title": "Creation Animals",
+      "page_id": "creation-animals",
+      "description": "Friendly creation animals together in a calm field.",
+      "bible_reference": "Genesis 1:24-25",
+      "tier": "free",
+      "age_group": "3-6",
+      "scene": "creation-animals"
+    },
+    {
+      "number": 2,
+      "title": "Noah's Ark",
+      "page_id": "noahs-ark",
+      "description": "Noah's ark resting safely with simple clouds and land.",
+      "bible_reference": "Genesis 6:14-16",
+      "tier": "free",
+      "age_group": "3-6",
+      "scene": "noahs-ark"
+    },
+    {
+      "number": 3,
+      "title": "Daniel and the Lions",
+      "page_id": "daniel-and-the-lions",
+      "description": "Daniel standing safely beside lions.",
+      "bible_reference": "Daniel 6:16-23",
+      "tier": "free",
+      "age_group": "5-9",
+      "scene": "daniel-and-the-lions"
+    },
+    {
+      "number": 4,
+      "title": "Garden of Eden",
+      "page_id": "garden-of-eden",
+      "description": "A peaceful Eden garden with trees and open spaces.",
+      "bible_reference": "Genesis 2:8-9",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "garden-of-eden"
+    },
+    {
+      "number": 5,
+      "title": "Adam and Eve with Garden Animals",
+      "page_id": "adam-and-eve-with-garden-animals",
+      "description": "Adam and Eve with gentle garden animals.",
+      "bible_reference": "Genesis 2:19-25",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "adam-and-eve-with-garden-animals"
+    },
+    {
+      "number": 6,
+      "title": "Garden Animal Friends",
+      "page_id": "garden-animal-friends",
+      "description": "Friendly animals in a simple garden scene.",
+      "bible_reference": "Genesis 2:19",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "garden-animal-friends"
+    },
+    {
+      "number": 7,
+      "title": "Noah Loading the Ark",
+      "page_id": "noah-loading-the-ark",
+      "description": "Noah guiding animals toward the ark.",
+      "bible_reference": "Genesis 6:19-20",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "noah-loading-the-ark"
+    },
+    {
+      "number": 8,
+      "title": "Rainbow After the Flood",
+      "page_id": "rainbow-after-the-flood",
+      "description": "Ark and rainbow after the flood waters.",
+      "bible_reference": "Genesis 9:13-16",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "rainbow-after-the-flood"
+    },
+    {
+      "number": 9,
+      "title": "Samson and the Lion",
+      "page_id": "samson-and-the-lion",
+      "description": "Samson and lion in a simple open field.",
+      "bible_reference": "Judges 14:5-6",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "samson-and-the-lion"
+    },
+    {
+      "number": 10,
+      "title": "David the Shepherd",
+      "page_id": "david-the-shepherd",
+      "description": "David with shepherd staff and sheep.",
+      "bible_reference": "1 Samuel 16:11-13",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "david-the-shepherd"
+    },
+    {
+      "number": 11,
+      "title": "Jonah and the Great Fish",
+      "page_id": "jonah-and-the-great-fish",
+      "description": "Jonah and a great fish above waves.",
+      "bible_reference": "Jonah 1:17",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "jonah-and-the-great-fish"
+    },
+    {
+      "number": 12,
+      "title": "Baby Moses in the Basket",
+      "page_id": "baby-moses-in-the-basket",
+      "description": "Baby Moses in a basket on the river.",
+      "bible_reference": "Exodus 2:3-6",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "baby-moses-in-the-basket"
+    },
+    {
+      "number": 13,
+      "title": "Moses and the Burning Bush",
+      "page_id": "moses-and-the-burning-bush",
+      "description": "Moses before the burning bush.",
+      "bible_reference": "Exodus 3:2-4",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "moses-and-the-burning-bush"
+    },
+    {
+      "number": 14,
+      "title": "Elijah and the Ravens",
+      "page_id": "elijah-and-the-ravens",
+      "description": "Elijah and ravens bringing food.",
+      "bible_reference": "1 Kings 17:4-6",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "elijah-and-the-ravens"
+    },
+    {
+      "number": 15,
+      "title": "Balaam and the Donkey",
+      "page_id": "balaam-and-the-donkey",
+      "description": "Balaam with his donkey on the path.",
+      "bible_reference": "Numbers 22:27-31",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "balaam-and-the-donkey"
+    },
+    {
+      "number": 16,
+      "title": "Joseph and the Colorful Coat",
+      "page_id": "joseph-and-the-colorful-coat",
+      "description": "Joseph in a patterned robe with broad sections.",
+      "bible_reference": "Genesis 37:3",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "joseph-and-the-colorful-coat"
+    },
+    {
+      "number": 17,
+      "title": "Queen Esther",
+      "page_id": "queen-esther",
+      "description": "Queen Esther with a simple crown.",
+      "bible_reference": "Esther 4:14-16",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "queen-esther"
+    },
+    {
+      "number": 18,
+      "title": "Ruth in the Fields",
+      "page_id": "ruth-in-the-fields",
+      "description": "Ruth gathering grain in the fields.",
+      "bible_reference": "Ruth 2:2-3",
+      "tier": "premium",
+      "age_group": "5-9",
+      "scene": "ruth-in-the-fields"
+    },
+    {
+      "number": 19,
+      "title": "Joshua and Jericho",
+      "page_id": "joshua-and-jericho",
+      "description": "Joshua near the walls of Jericho.",
+      "bible_reference": "Joshua 6:2-5",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "joshua-and-jericho"
+    },
+    {
+      "number": 20,
+      "title": "The Good Shepherd",
+      "page_id": "the-good-shepherd",
+      "description": "A shepherd caring for a sheep.",
+      "bible_reference": "John 10:11-14",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "the-good-shepherd"
+    },
+    {
+      "number": 21,
+      "title": "Lions, Lambs, and Doves",
+      "page_id": "lions-lambs-and-doves",
+      "description": "Lions, lambs, and doves in peace.",
+      "bible_reference": "Isaiah 11:6-7",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "lions-lambs-and-doves"
+    },
+    {
+      "number": 22,
+      "title": "Fish and Loaves",
+      "page_id": "fish-and-loaves",
+      "description": "Fish and loaves in a simple arrangement.",
+      "bible_reference": "Matthew 14:17-19",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "fish-and-loaves"
+    },
+    {
+      "number": 23,
+      "title": "Birds of the Air",
+      "page_id": "birds-of-the-air",
+      "description": "Birds flying and resting in open sky.",
+      "bible_reference": "Matthew 6:26",
+      "tier": "premium",
+      "age_group": "8-12",
+      "scene": "birds-of-the-air"
+    },
+    {
+      "number": 24,
+      "title": "Creation Day Six Animals",
+      "page_id": "creation-day-six-animals",
+      "description": "Day six animals in a wide landscape.",
+      "bible_reference": "Genesis 1:24-31",
+      "tier": "premium",
+      "age_group": "3-6",
+      "scene": "creation-day-six-animals"
+    }
+  ]
+}
