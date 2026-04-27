@@ -6,6 +6,8 @@ nonisolated struct ColoringPage: Identifiable, Hashable, Sendable {
     let subtitle: String
     let scriptureReference: String
     let category: ColoringPageCategory
+    let assetName: String
+    let thumbnailAssetName: String
     let isPremium: Bool
 
     var accessLabel: String {
@@ -14,19 +16,23 @@ nonisolated struct ColoringPage: Identifiable, Hashable, Sendable {
 
     nonisolated static let allPages: [ColoringPage] = [
         ColoringPage(
+            id: "adam-eve-garden-animals",
+            title: "Adam and Eve with Animals",
+            subtitle: "Adam and Eve in the garden with peaceful animals",
+            scriptureReference: "GENESIS 2",
+            category: .garden,
+            assetName: "coloring-adam-eve-garden",
+            thumbnailAssetName: "coloring-adam-eve-garden",
+            isPremium: false
+        ),
+        ColoringPage(
             id: "creation-animals",
             title: "Creation Animals",
             subtitle: "Birds, fish, and animals from God's good creation",
             scriptureReference: "GENESIS 1",
             category: .creation,
-            isPremium: false
-        ),
-        ColoringPage(
-            id: "noahs-ark",
-            title: "Noah's Ark",
-            subtitle: "Animal pairs gathered safely on the ark",
-            scriptureReference: "GENESIS 6-9",
-            category: .ark,
+            assetName: "coloring-creation-animals",
+            thumbnailAssetName: "coloring-creation-animals",
             isPremium: false
         ),
         ColoringPage(
@@ -35,46 +41,18 @@ nonisolated struct ColoringPage: Identifiable, Hashable, Sendable {
             subtitle: "Daniel rests while God closes the lions' mouths",
             scriptureReference: "DANIEL 6",
             category: .oldTestament,
+            assetName: "coloring-daniel-lions-den",
+            thumbnailAssetName: "coloring-daniel-lions-den",
             isPremium: false
         ),
         ColoringPage(
-            id: "garden-of-eden",
-            title: "Garden of Eden",
-            subtitle: "Adam, Eve, and peaceful garden animals",
-            scriptureReference: "GENESIS 2",
-            category: .garden,
-            isPremium: true
-        ),
-        ColoringPage(
-            id: "samson-lion",
-            title: "Samson and the Lion",
-            subtitle: "Samson's strength in an Old Testament adventure",
-            scriptureReference: "JUDGES 14",
-            category: .oldTestament,
-            isPremium: true
-        ),
-        ColoringPage(
-            id: "david-shepherd",
-            title: "David the Shepherd",
-            subtitle: "David watches over sheep in the fields",
-            scriptureReference: "1 SAMUEL 17",
-            category: .oldTestament,
-            isPremium: true
-        ),
-        ColoringPage(
-            id: "jonah-big-fish",
-            title: "Jonah and the Great Fish",
-            subtitle: "Jonah's ocean story with waves and fish",
-            scriptureReference: "JONAH 1-2",
-            category: .oldTestament,
-            isPremium: true
-        ),
-        ColoringPage(
-            id: "baby-moses-river",
-            title: "Baby Moses",
-            subtitle: "A basket floats safely along the river reeds",
-            scriptureReference: "EXODUS 2",
-            category: .oldTestament,
+            id: "noahs-ark",
+            title: "Noah's Ark",
+            subtitle: "Noah welcomes the animals on the ark under a rainbow",
+            scriptureReference: "GENESIS 6-9",
+            category: .ark,
+            assetName: "coloring-noahs-ark",
+            thumbnailAssetName: "coloring-noahs-ark",
             isPremium: true
         ),
         ColoringPage(
@@ -83,6 +61,8 @@ nonisolated struct ColoringPage: Identifiable, Hashable, Sendable {
             subtitle: "Lions, lambs, birds, and flowers in the garden",
             scriptureReference: "GENESIS 1-2",
             category: .animals,
+            assetName: "coloring-garden-animal-friends",
+            thumbnailAssetName: "coloring-garden-animal-friends",
             isPremium: true
         )
     ]

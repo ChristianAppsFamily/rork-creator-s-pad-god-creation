@@ -10,22 +10,29 @@ struct ColoringPageTemplateView: View {
             ZStack {
                 Color.white
 
-                RoundedRectangle(cornerRadius: 28)
-                    .stroke(.black, lineWidth: 4)
-                    .padding(24)
+                if UIImage(named: page.assetName) != nil {
+                    Image(page.assetName)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(showsTitle ? 18 : 0)
+                } else {
+                    RoundedRectangle(cornerRadius: 28)
+                        .stroke(.black, lineWidth: 4)
+                        .padding(24)
 
-                sceneContent(size: size)
+                    sceneContent(size: size)
 
-                if showsTitle {
-                    VStack(spacing: 4) {
-                        Spacer()
-                        Text(page.title.uppercased())
-                            .font(.system(size: max(16, size.width * 0.035), weight: .bold, design: .rounded))
-                        Text(page.scriptureReference)
-                            .font(.system(size: max(12, size.width * 0.025), weight: .semibold, design: .serif))
+                    if showsTitle {
+                        VStack(spacing: 4) {
+                            Spacer()
+                            Text(page.title.uppercased())
+                                .font(.system(size: max(16, size.width * 0.035), weight: .bold, design: .rounded))
+                            Text(page.scriptureReference)
+                                .font(.system(size: max(12, size.width * 0.025), weight: .semibold, design: .serif))
+                        }
+                        .foregroundStyle(.black)
+                        .padding(.bottom, 44)
                     }
-                    .foregroundStyle(.black)
-                    .padding(.bottom, 44)
                 }
             }
             .foregroundStyle(.black)
@@ -41,6 +48,8 @@ struct ColoringPageTemplateView: View {
             arkScene
         case "daniel-lions-den":
             lionsDenScene
+        case "adam-eve-garden-animals":
+            gardenScene
         case "garden-of-eden":
             gardenScene
         case "samson-lion":
