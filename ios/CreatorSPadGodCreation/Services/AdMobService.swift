@@ -1,11 +1,14 @@
 import GoogleMobileAds
 import UIKit
+import AppTrackingTransparency
 
 @Observable
 @MainActor
 class AdMobService {
     private(set) var isInterstitialReady: Bool = false
     private(set) var isRewardedReady: Bool = false
+    private(set) var trackingAuthorizationStatus: ATTrackingManager.AuthorizationStatus = .notDetermined
+    private var isInitialized = false
 
     @ObservationIgnored private var interstitialAd: InterstitialAd?
     @ObservationIgnored private var rewardedAd: RewardedAd?
@@ -39,10 +42,34 @@ class AdMobService {
     }
 
     static func initialize() {
-        MobileAds.shared.start { _ in }
+        // Ensure we're on main thread
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async {
+                initialize()
+            }
+            return
+        }
+
+        // Check if we have a valid ad unit ID configured
+        let hasValidConfig = !bannerAdUnitID.isEmpty || !interstitialAdUnitID.isEmpty || !rewardedAdUnitID.isEmpty
+        #if DEBUG
+        // In debug, we use test IDs so always proceed
+        #else
+        guard hasValidConfig else {
+            print("AdMob: No valid ad unit IDs configured. Skipping initialization.")
+            return
+        }
+        #endif
+
+        // Initialize Mobile Ads SDK
+        MobileAds.shared.start { initializationStatus in
+            print("AdMob initialized with status: \(initializationStatus)")
+        }
     }
 
     func loadInterstitial() {
+        guard !AdMobService.interstitialAdUnitID.isEmpty else { return }
+
         InterstitialAd.load(with: Self.interstitialAdUnitID, request: Request()) { [weak self] ad, error in
             guard let self else { return }
             if let ad {
@@ -50,11 +77,14 @@ class AdMobService {
                 self.isInterstitialReady = true
             } else {
                 self.isInterstitialReady = false
+                print("Failed to load interstitial: \(error?.localizedDescription ?? "unknown error")")
             }
         }
     }
 
     func loadRewarded() {
+        guard !AdMobService.rewardedAdUnitID.isEmpty else { return }
+
         RewardedAd.load(with: Self.rewardedAdUnitID, request: Request()) { [weak self] ad, error in
             guard let self else { return }
             if let ad {
@@ -62,12 +92,17 @@ class AdMobService {
                 self.isRewardedReady = true
             } else {
                 self.isRewardedReady = false
+                print("Failed to load rewarded ad: \(error?.localizedDescription ?? "unknown error")")
             }
         }
     }
 
     func showInterstitial(from viewController: UIViewController) {
-        guard let ad = interstitialAd else { return }
+        guard let ad = interstitialAd else {
+            // Try to reload if not ready
+            loadInterstitial()
+            return
+        }
         ad.present(from: viewController)
         interstitialAd = nil
         isInterstitialReady = false
@@ -75,7 +110,11 @@ class AdMobService {
     }
 
     func showRewarded(from viewController: UIViewController, onEarned: @escaping () -> Void) {
-        guard let ad = rewardedAd else { return }
+        guard let ad = rewardedAd else {
+            // Try to reload if not ready
+            loadRewarded()
+            return
+        }
         ad.present(from: viewController) {
             onEarned()
         }
