@@ -8,6 +8,7 @@ struct SettingsView: View {
     @State private var isPurchasing: Bool = false
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
+    @State private var showPrivacyPolicy: Bool = false
 
     var body: some View {
         NavigationStack {
