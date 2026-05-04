@@ -19,6 +19,7 @@ class CanvasViewModel {
     var showStickers: Bool = false
     var canvasScale: CGFloat = 1.0
     var currentArtwork: Artwork?
+    var currentColoringPage: ColoringPage?
     var exportImage: UIImage?
 
     private var autoSaveTimer: Timer?
@@ -82,7 +83,7 @@ class CanvasViewModel {
 
         let scale: CGFloat = 2.0
         let bounds = CGRect(x: 0, y: 0, width: canvasView.bounds.width, height: canvasView.bounds.height)
-        let thumbnailImage = drawing.image(from: bounds, scale: scale)
+        let thumbnailImage = exportCurrentDrawing(withBackground: true) ?? drawing.image(from: bounds, scale: scale)
         let thumbnailData = thumbnailImage.pngData()
 
         if let artwork = currentArtwork {
@@ -90,9 +91,18 @@ class CanvasViewModel {
             artwork.thumbnailData = thumbnailData
             artwork.verseReference = currentVerse.reference
             artwork.verseText = currentVerse.text
+            artwork.artworkKindRawValue = currentColoringPage == nil ? ArtworkKind.freeform.rawValue : ArtworkKind.coloringPage.rawValue
+            artwork.coloringPageID = currentColoringPage?.id
+            artwork.coloringPageTitle = currentColoringPage?.title
             artwork.updatedAt = Date()
         } else {
-            let artwork = Artwork(verseReference: currentVerse.reference, verseText: currentVerse.text)
+            let artwork = Artwork(
+                verseReference: currentVerse.reference,
+                verseText: currentVerse.text,
+                artworkKind: currentColoringPage == nil ? .freeform : .coloringPage,
+                coloringPageID: currentColoringPage?.id,
+                coloringPageTitle: currentColoringPage?.title
+            )
             artwork.drawingData = drawingData
             artwork.thumbnailData = thumbnailData
             modelContext.insert(artwork)
@@ -104,7 +114,12 @@ class CanvasViewModel {
 
     func loadArtwork(_ artwork: Artwork) {
         currentArtwork = artwork
-        currentVerse = ScriptureVerse.allVerses.first(where: { $0.reference == artwork.verseReference }) ?? ScriptureVerse.allVerses[0]
+        currentColoringPage = ColoringPage.page(withID: artwork.coloringPageID)
+        if let currentColoringPage {
+            currentVerse = ScriptureVerse(reference: currentColoringPage.scriptureReference, text: currentColoringPage.subtitle)
+        } else {
+            currentVerse = ScriptureVerse.allVerses.first(where: { $0.reference == artwork.verseReference }) ?? ScriptureVerse.allVerses[0]
+        }
 
         if let data = artwork.drawingData, let drawing = try? PKDrawing(data: data) {
             canvasView?.drawing = drawing
@@ -113,8 +128,17 @@ class CanvasViewModel {
 
     func newArtwork() {
         currentArtwork = nil
+        currentColoringPage = nil
         currentVerse = ScriptureVerse.allVerses[0]
         canvasView?.drawing = PKDrawing()
+    }
+
+    func startColoringPage(_ page: ColoringPage) {
+        currentArtwork = nil
+        currentColoringPage = page
+        currentVerse = ScriptureVerse(reference: page.scriptureReference, text: page.subtitle)
+        canvasView?.drawing = PKDrawing()
+        audioService.playTapSound()
     }
 
     func exportCurrentDrawing(withBackground: Bool) -> UIImage? {
@@ -127,7 +151,15 @@ class CanvasViewModel {
             return renderer.image { ctx in
                 UIColor.white.setFill()
                 ctx.fill(CGRect(origin: .zero, size: CGSize(width: bounds.width * scale, height: bounds.height * scale)))
-                drawDotGrid(in: ctx, size: CGSize(width: bounds.width * scale, height: bounds.height * scale))
+                if let currentColoringPage {
+                    drawColoringTemplate(
+                        currentColoringPage,
+                        in: ctx,
+                        size: CGSize(width: bounds.width * scale, height: bounds.height * scale)
+                    )
+                } else {
+                    drawDotGrid(in: ctx, size: CGSize(width: bounds.width * scale, height: bounds.height * scale))
+                }
                 let drawingImage = canvasView.drawing.image(from: bounds, scale: scale)
                 drawingImage.draw(in: CGRect(origin: .zero, size: CGSize(width: bounds.width * scale, height: bounds.height * scale)))
             }
@@ -150,6 +182,16 @@ class CanvasViewModel {
             }
             x += dotSpacing
         }
+    }
+
+    private func drawColoringTemplate(_ page: ColoringPage, in ctx: UIGraphicsImageRendererContext, size: CGSize) {
+        let renderer = ImageRenderer(
+            content: ColoringPageTemplateView(page: page)
+                .frame(width: size.width, height: size.height)
+        )
+        renderer.scale = 1
+        guard let image = renderer.uiImage else { return }
+        image.draw(in: CGRect(origin: .zero, size: size))
     }
 
     func prepareShareImage() {
@@ -176,15 +218,26 @@ class CanvasViewModel {
         let drawing = canvasView.drawing
         let drawingData = drawing.dataRepresentation()
         let bounds = CGRect(x: 0, y: 0, width: canvasView.bounds.width, height: canvasView.bounds.height)
-        let thumbnailImage = drawing.image(from: bounds, scale: 1.0)
+        let thumbnailImage = exportCurrentDrawing(withBackground: true) ?? drawing.image(from: bounds, scale: 1.0)
         let thumbnailData = thumbnailImage.pngData()
 
         if let artwork = currentArtwork {
             artwork.drawingData = drawingData
             artwork.thumbnailData = thumbnailData
+            artwork.verseReference = currentVerse.reference
+            artwork.verseText = currentVerse.text
+            artwork.artworkKindRawValue = currentColoringPage == nil ? ArtworkKind.freeform.rawValue : ArtworkKind.coloringPage.rawValue
+            artwork.coloringPageID = currentColoringPage?.id
+            artwork.coloringPageTitle = currentColoringPage?.title
             artwork.updatedAt = Date()
         } else {
-            let artwork = Artwork(verseReference: currentVerse.reference, verseText: currentVerse.text)
+            let artwork = Artwork(
+                verseReference: currentVerse.reference,
+                verseText: currentVerse.text,
+                artworkKind: currentColoringPage == nil ? .freeform : .coloringPage,
+                coloringPageID: currentColoringPage?.id,
+                coloringPageTitle: currentColoringPage?.title
+            )
             artwork.drawingData = drawingData
             artwork.thumbnailData = thumbnailData
             modelContext.insert(artwork)
