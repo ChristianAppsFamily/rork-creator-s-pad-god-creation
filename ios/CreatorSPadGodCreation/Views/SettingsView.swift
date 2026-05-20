@@ -8,7 +8,6 @@ struct SettingsView: View {
     @State private var isPurchasing: Bool = false
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
-    @State private var showPrivacyPolicy: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -130,7 +129,7 @@ struct SettingsView: View {
                         icon: "crown.fill",
                         iconColor: Color(red: 0.95, green: 0.75, blue: 0.2),
                         title: "Premium Unlock",
-                        subtitle: "All coloring pages, verses, fonts, colors, and no ads",
+                        subtitle: "30 verses, 15 fonts, 20 colors, cloud backup",
                         price: product.displayPrice,
                         product: product
                     )
@@ -143,7 +142,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Premium Active")
                             .font(.subheadline.weight(.semibold))
-                        Text("All coloring pages and creative tools unlocked!")
+                        Text("All features unlocked!")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }

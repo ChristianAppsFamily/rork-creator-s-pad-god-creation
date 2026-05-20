@@ -2,26 +2,10 @@ import SwiftUI
 import GoogleMobileAds
 
 struct AdBannerView: View {
-    @State private var isReady = false
-
     var body: some View {
-        Group {
-            if isReady {
-                BannerAdRepresentable(adUnitID: AdMobService.bannerID)
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-            } else {
-                // Placeholder while waiting for ad
-                Color.clear
-                    .frame(height: 50)
-            }
-        }
-        .onAppear {
-            // Delay showing the banner to ensure view hierarchy is ready
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                isReady = true
-            }
-        }
+        BannerAdRepresentable(adUnitID: AdMobService.bannerID)
+            .frame(height: 50)
+            .frame(maxWidth: .infinity)
     }
 }
 
@@ -46,14 +30,10 @@ private struct BannerAdRepresentable: UIViewRepresentable {
 
     final class Coordinator {
         func rootViewController() -> UIViewController? {
-            // Get the key window's root view controller more reliably
-            let scenes = UIApplication.shared.connectedScenes
+            UIApplication.shared.connectedScenes
                 .compactMap { $0 as? UIWindowScene }
-                .filter { $0.activationState == .foregroundActive }
-
-            return scenes.first?.windows
-                .first(where: { $0.isKeyWindow })?.rootViewController
-                ?? scenes.first?.windows.first?.rootViewController
+                .first?.windows
+                .first?.rootViewController
         }
     }
 }
