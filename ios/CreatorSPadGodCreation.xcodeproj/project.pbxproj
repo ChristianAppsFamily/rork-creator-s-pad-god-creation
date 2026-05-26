@@ -33,8 +33,21 @@
 		105FC5932E9EAD3200EA8BCF /* CreatorSPadGodCreationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CreatorSPadGodCreationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8A4D1E7F98B6C5A3D2E10F12 /* Exceptions for "CreatorSPadGodCreation" folder in "CreatorSPadGodCreation" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 105FC5792E9EAD3100EA8BCF /* CreatorSPadGodCreation */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		105FC57C2E9EAD3100EA8BCF /* CreatorSPadGodCreation */ = {
+			exceptions = (
+				8A4D1E7F98B6C5A3D2E10F12 /* Exceptions for "CreatorSPadGodCreation" folder in "CreatorSPadGodCreation" target */,
+			);
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CreatorSPadGodCreation;
 			sourceTree = "<group>";
