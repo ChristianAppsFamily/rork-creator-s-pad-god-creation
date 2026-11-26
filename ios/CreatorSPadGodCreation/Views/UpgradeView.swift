@@ -3,6 +3,7 @@ import StoreKit
 
 struct UpgradeView: View {
     @Environment(\.dismiss) private var dismiss
+    let context: UpgradeContext = .coloringPages
     @Bindable var storeService: StoreService
     @State private var isPurchasing: Bool = false
     @State private var showError: Bool = false
@@ -20,7 +21,7 @@ struct UpgradeView: View {
                 .padding(24)
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("Unlock More Pages")
+            .navigationTitle(context.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -43,11 +44,11 @@ struct UpgradeView: View {
                 .font(.system(size: 52))
                 .foregroundStyle(Color(red: 0.95, green: 0.75, blue: 0.2))
 
-            Text("More Bible Coloring Pages")
+            Text(context.title)
                 .font(.title2.weight(.bold))
                 .multilineTextAlignment(.center)
 
-            Text("Your family gets \(ColoringPage.freePages.count) free starter pages. Premium unlocks the full Bible coloring library plus extra creative tools.")
+            Text(context.message)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -62,9 +63,9 @@ struct UpgradeView: View {
 
     private var benefits: some View {
         VStack(alignment: .leading, spacing: 14) {
-            benefit("paintpalette.fill", "Unlock every animal and Old Testament coloring page")
-            benefit("book.closed.fill", "Garden, Ark, Samson, Daniel, Jonah, Moses, and more")
-            benefit("slider.horizontal.3", "Premium colors, fonts, and creative tools")
+            ForEach(context.benefits, id: \.text) { item in
+                benefit(item.symbolName, item.text)
+            }
             benefit("rectangle.slash.fill", "Premium also removes ads")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -220,6 +221,62 @@ struct UpgradeView: View {
         } catch {
             errorMessage = error.localizedDescription
             showError = true
+        }
+    }
+}
+
+nonisolated enum UpgradeContext: Sendable {
+    case coloringPages
+    case premiumColors
+    case premiumFonts
+
+    var navigationTitle: String {
+        switch self {
+        case .coloringPages: return "Unlock More Pages"
+        case .premiumColors: return "Unlock Colors"
+        case .premiumFonts: return "Unlock Fonts"
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .coloringPages: return "More Bible Coloring Pages"
+        case .premiumColors: return "Premium Colors"
+        case .premiumFonts: return "Premium Fonts"
+        }
+    }
+
+    var message: String {
+        switch self {
+        case .coloringPages:
+            return "Your family gets \(ColoringPage.freePages.count) free starter pages. Premium unlocks the full Bible coloring library plus extra creative tools."
+        case .premiumColors:
+            return "Unlock more beautiful colors for Bible art and coloring pages. Premium also unlocks all coloring pages, fonts, and removes ads."
+        case .premiumFonts:
+            return "Unlock more creative Bible verse lettering styles. Premium also unlocks all coloring pages, colors, and removes ads."
+        }
+    }
+
+    var benefits: [(symbolName: String, text: String)] {
+        switch self {
+        case .coloringPages:
+            return [
+                ("paintpalette.fill", "Unlock every animal and Old Testament coloring page"),
+                ("book.closed.fill", "Garden, Ark, Daniel, Noah, and more"),
+                ("slider.horizontal.3", "Premium colors, fonts, and creative tools")
+            ]
+        case .premiumColors:
+            return [
+                ("paintpalette.fill", "Unlock the full color palette"),
+                ("book.closed.fill", "Use premium colors on every coloring page"),
+                ("textformat", "Premium also includes extra fonts")
+            ]
+        case .premiumFonts:
+            return [
+                ("textformat", "Unlock premium lettering styles"),
+                ("book.closed.fill", "Create richer Bible verse artwork"),
+                ("paintpalette.fill", "Premium also includes extra colors")
+            ]
         }
     }
 }
